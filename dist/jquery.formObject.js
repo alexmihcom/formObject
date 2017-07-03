@@ -5,8 +5,9 @@
         this.get = function () {
             var data = {};
             $(this).find('input, select, textarea').each(function () {
+                var val;
+                
                 if ($(this).attr('type') == 'checkbox') {
-                    var val;
                     if ($(this).is(':checked')) {
                         if ($(this).val() != '') {
                             val = $(this).val();
@@ -18,19 +19,31 @@
                             val = 0;
                         }
                     }
-
-                    if ($(this).attr('name').match(/\[\]$/)) {
-                        if (data[$(this).attr('name')] == undefined) {
-                            data[$(this).attr('name')] = [];
+                } else {
+                    val = $(this).val();
+                }
+        
+                var keys = [];
+                $(this).attr('name').replace(/^([^\[\]]+)/, function(match, p1) {
+                    keys.push(p1)
+                });
+                $(this).attr('name').replace(/\[([^\[\]]*)\]/g, function(match, p1) {
+                    keys.push(p1)
+                });
+                
+                if(keys.length > 0) {
+                    var current = data
+                    for(var i in keys) {
+                        if(i >= (keys.length - 1)) {
+                            current[keys[i]] = val
+                        } else if(typeof current[keys[i]] == 'undefined') {
+                            current[keys[i]] = {}
                         }
-                        data[$(this).attr('name')].push(val);
-                    } else {
-                        data[$(this).attr('name')] = val;
+                        current = current[keys[i]]
                     }
                 } else {
-                    data[$(this).attr('name')] = $(this).val();
+                    data[$(this).attr('name')] = val;
                 }
-
             });
             return data;
         }
