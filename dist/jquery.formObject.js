@@ -24,12 +24,14 @@
                 }
         
                 var keys = [];
-                $(this).attr('name').replace(/^([^\[\]]+)/, function(match, p1) {
-                    keys.push(p1)
-                });
-                $(this).attr('name').replace(/\[([^\[\]]*)\]/g, function(match, p1) {
-                    keys.push(p1)
-                });
+                if($(this).attr('name') != undefined) {
+                    $(this).attr('name').replace(/^([^\[\]]+)/, function(match, p1) {
+                        keys.push(p1)
+                    });
+                    $(this).attr('name').replace(/\[([^\[\]]*)\]/g, function(match, p1) {
+                        keys.push(p1)
+                    });
+                }
                 
                 if(keys.length > 0) {
                     var current = data
