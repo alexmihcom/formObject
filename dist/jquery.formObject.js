@@ -57,7 +57,7 @@
                     this.set(data[i], i);
                     continue;
                 }
-                let name = i;
+                var name = i;
                 if (parent != '') {
                     name = parent + '[' + i + ']';
                 }
