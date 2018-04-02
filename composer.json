@@ -7,5 +7,6 @@
             "email": "as1alex1as@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {}
 }
