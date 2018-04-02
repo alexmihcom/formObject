@@ -1,0 +1,11 @@
+{
+    "name": "alexmihcom/jquery-form-object",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mikhailov Aleksei",
+            "email": "as1alex1as@gmail.com"
+        }
+    ],
+    "require": {}
+}
